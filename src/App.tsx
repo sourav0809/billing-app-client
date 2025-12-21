@@ -1,6 +1,6 @@
-// App.tsx is now replaced by routes/index.tsx
-// This file is kept for compatibility but the main entry is AppRouter
+import { AppRouter } from "./routes";
+import "./App.css";
 
 export default function App() {
-  return null;
+  return <AppRouter />;
 }
