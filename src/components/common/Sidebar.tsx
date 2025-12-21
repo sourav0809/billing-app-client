@@ -193,7 +193,8 @@ export const Sidebar = () => {
                     className={cn(
                       isMobile
                         ? "ml-3 text-base"
-                        : "whitespace-nowrap text-sm opacity-0 transition-all duration-300 group-hover:translate-x-3 group-hover:opacity-100"
+                        : "whitespace-nowrap text-sm opacity-0 transition-all duration-300 group-hover:translate-x-3 group-hover:opacity-100",
+                      "text-base text-muted-foreground  "
                     )}
                   >
                     {item.label}
@@ -220,7 +221,8 @@ export const Sidebar = () => {
               className={cn(
                 isMobile
                   ? "ml-3 text-base"
-                  : "ml-0 whitespace-nowrap text-sm opacity-0 transition-all group-hover:ml-3 group-hover:opacity-100"
+                  : "ml-0 whitespace-nowrap text-sm opacity-0 transition-all group-hover:ml-3 group-hover:opacity-100",
+                "text-base text-muted-foreground  "
               )}
             >
               Profile
@@ -238,7 +240,8 @@ export const Sidebar = () => {
               className={cn(
                 isMobile
                   ? "ml-3 text-base "
-                  : "ml-0 whitespace-nowrap text-base opacity-0 transition-all group-hover:ml-3 group-hover:opacity-100"
+                  : "ml-0 whitespace-nowrap text-base opacity-0 transition-all group-hover:ml-3 group-hover:opacity-100",
+                "text-base text-muted-foreground  "
               )}
             >
               Logout
