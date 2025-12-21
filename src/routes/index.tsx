@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { LoginForm } from "@/features/auth";
+import { Customers } from "@/features/customers/customers";
 import { AuthGuard } from "./guards/AuthGuard";
 import { paths } from "./paths";
 
@@ -34,12 +35,7 @@ const router = createBrowserRouter([
     element: (
       <AuthGuard>
         <DashboardLayout>
-          <div>
-            <h2 className="text-2xl font-medium">Customers</h2>
-            <p className=" mt-1 text-sm text-muted-foreground">
-              Manage your customers here.
-            </p>
-          </div>
+          <Customers />
         </DashboardLayout>
       </AuthGuard>
     ),
