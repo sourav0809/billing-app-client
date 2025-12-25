@@ -129,7 +129,7 @@ export const Sidebar = () => {
                 "fixed left-0 top-0 z-50 h-screen w-64 transform transition-transform duration-300 ease-in-out",
                 isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
               )
-            : "group fixed left-0 top-0 z-40 flex h-screen w-20 flex-col justify-between overflow-hidden border-r transition-all duration-300 ease-in-out hover:w-64"
+            : "group fixed left-0 top-0 z-40 flex h-screen w-20 flex-col justify-between overflow-hidden border-r border-gray-200 transition-all duration-300 ease-in-out hover:w-64"
         )}
       >
         {/* Close button for mobile */}
