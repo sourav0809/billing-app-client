@@ -23,9 +23,10 @@ export const LoginForm = () => {
       email: "",
       password: "",
     },
+    mode: "onSubmit",
   });
 
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     login(data);
   };
 
@@ -54,13 +55,13 @@ export const LoginForm = () => {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="h-12 pl-10 pr-4 text-base border-border/60 focus-visible:border-blue-500/60 focus-visible:ring-blue-500/20 focus-visible:ring-2 hover:border-border/80 transition-[border-color]"
+                className="h-12 pl-10 pr-4 text-base border  focus-visible:border-blue-500/60 focus-visible:ring-blue-500/20 focus-visible:ring-2 hover:border-border/80 transition-[border-color]"
                 {...form.register("email")}
               />
             </div>
 
             {form.formState.errors.email && (
-              <p className="text-sm text-destructive text-red-500 mt-1.5">
+              <p className="text-sm text-destructive mt-1.5">
                 {form.formState.errors.email.message}
               </p>
             )}
@@ -78,13 +79,13 @@ export const LoginForm = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="h-12 pl-10 pr-4 text-base border-border/60 focus-visible:border-blue-500/60 focus-visible:ring-blue-500/20 focus-visible:ring-2 hover:border-border/80 transition-[border-color]"
+                className="h-12 pl-10 pr-4 text-base border focus-visible:border-blue-500/60 focus-visible:ring-blue-500/20 focus-visible:ring-2 hover:border-border/80 transition-[border-color]"
                 {...form.register("password")}
               />
             </div>
 
             {form.formState.errors.password && (
-              <p className="text-sm text-destructive text-red-500 mt-1.5">
+              <p className="text-sm text-destructive  mt-1.5">
                 {form.formState.errors.password.message}
               </p>
             )}

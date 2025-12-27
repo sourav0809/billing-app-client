@@ -44,28 +44,28 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/30 hover:bg-muted/30 border-b border-gray-200">
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Customer Name
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Registration Number
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Email
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Phone
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Status
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Plan
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6 border-r border-gray-200">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Joined Date
             </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-5 px-6">
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4">
               Actions
             </TableHead>
           </TableRow>
@@ -73,7 +73,7 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
         <TableBody>
           {customers.length === 0 ? (
             <TableRow className="border-b-0">
-              <TableCell colSpan={8} className="h-24 text-center">
+              <TableCell colSpan={8} className="h-16 text-center py-3 px-4">
                 No customers found.
               </TableCell>
             </TableRow>
@@ -85,7 +85,7 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                   index % 2 === 0 ? "bg-card" : "bg-muted/10"
                 }`}
               >
-                <TableCell className="py-5 px-6 border-r border-gray-100">
+                <TableCell className="py-3 px-4 border-r border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100">
                       <Users className="h-4 w-4 text-blue-600" />
@@ -95,10 +95,10 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-sm text-foreground py-5 px-6 border-r border-gray-100">
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
                   {customer.registrationNumber}
                 </TableCell>
-                <TableCell className="py-5 px-6 border-r border-gray-100">
+                <TableCell className="py-3 px-4 border-r border-gray-100">
                   <a
                     href={`mailto:${customer.email}`}
                     className="text-sm text-blue-600 hover:underline"
@@ -106,10 +106,10 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                     {customer.email}
                   </a>
                 </TableCell>
-                <TableCell className="text-sm text-foreground py-5 px-6 border-r border-gray-100">
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
                   {customer.phone}
                 </TableCell>
-                <TableCell className="py-5 px-6 border-r border-gray-100">
+                <TableCell className="py-3 px-4 border-r border-gray-100">
                   <Badge
                     className={`text-xs font-medium ${getStatusBadgeClassName(
                       customer.status
@@ -118,13 +118,13 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                     {getStatusLabel(customer.status)}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-sm text-foreground py-5 px-6 border-r border-gray-100">
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
                   {customer.plan}
                 </TableCell>
-                <TableCell className="text-sm text-foreground py-5 px-6 border-r border-gray-100">
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
                   {customer.joinedDate}
                 </TableCell>
-                <TableCell className="py-5 px-6">
+                <TableCell className="py-3 px-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0">

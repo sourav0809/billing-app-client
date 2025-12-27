@@ -56,7 +56,7 @@ export const Customers = () => {
         </div>
         <Button
           onClick={handleAddCustomer}
-          className="bg-blue-500 hover:bg-blue-600 text-white gap-2 self-start"
+          className="bg-blue-500 hover:bg-blue-600 text-white gap-2 self-start px-6 py-2 text-sm font-medium cursor-pointer"
         >
           <Plus className="h-4 w-4" />
           Add Customer
