@@ -6,8 +6,9 @@ interface CustomersPaginationProps {
   totalPages: number;
   onPageChange: (page: number) => void;
   totalItems: number;
-  startIndex: number;
-  endIndex: number;
+  limit: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 export const CustomersPagination = ({
@@ -15,8 +16,9 @@ export const CustomersPagination = ({
   totalPages,
   onPageChange,
   totalItems,
-  startIndex,
-  endIndex,
+  limit,
+  hasNextPage,
+  hasPreviousPage,
 }: CustomersPaginationProps) => {
   const getPageNumbers = () => {
     if (totalPages <= 5) {
@@ -40,11 +42,13 @@ export const CustomersPagination = ({
     return [currentPage - 1, currentPage, currentPage + 1];
   };
 
+  const startIndex = (currentPage - 1) * limit;
+  const endIndex = Math.min(startIndex + limit, totalItems);
+
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
       <p className="text-sm text-muted-foreground">
-        Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of{" "}
-        {totalItems} customers
+        Showing {startIndex + 1} to {endIndex} of {totalItems} customers
       </p>
 
       {/* Pagination */}
@@ -57,7 +61,7 @@ export const CustomersPagination = ({
           size="sm"
           className="h-8 px-2 text-muted-foreground hover:text-foreground"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
+          disabled={!hasPreviousPage}
         >
           <ChevronLeft className="h-4 w-4" />
           <span className="ml-1">Previous</span>
@@ -99,7 +103,7 @@ export const CustomersPagination = ({
           size="sm"
           className="h-8 px-2 text-muted-foreground hover:text-foreground"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage === totalPages}
+          disabled={!hasNextPage}
         >
           <span className="mr-1">Next</span>
           <ChevronRight className="h-4 w-4" />

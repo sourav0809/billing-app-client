@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import type { Customer } from "../types/customer.types";
+import { formatDate } from "@/lib/utils/format";
 
 interface CustomersTableProps {
   customers: Customer[];
@@ -24,18 +25,16 @@ interface CustomersTableProps {
 const getStatusBadgeClassName = (status: Customer["status"]) => {
   switch (status) {
     case "active":
-      return "bg-blue-500 text-white border-transparent";
+      return "bg-green-100 text-green-700 border-green-200";
     case "inactive":
-      return "bg-gray-200 text-gray-700 border-transparent";
-    case "pending":
-      return "bg-yellow-50 text-yellow-700 border-yellow-200";
+      return "bg-gray-100 text-gray-700 border-gray-200";
     default:
-      return "";
+      return "bg-gray-100 text-gray-700 border-gray-200";
   }
 };
 
 const getStatusLabel = (status: Customer["status"]) => {
-  return status.charAt(0).toUpperCase() + status.slice(1).toUpperCase();
+  return status.charAt(0).toUpperCase() + status.slice(1);
 };
 
 export const CustomersTable = ({ customers }: CustomersTableProps) => {
@@ -45,25 +44,25 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
         <TableHeader>
           <TableRow className="bg-muted/30 hover:bg-muted/30 border-b border-gray-200">
             <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
-              Customer Name
-            </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
-              Registration Number
+              Name
             </TableHead>
             <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Email
             </TableHead>
             <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
-              Phone
+              Phone Number
+            </TableHead>
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
+              Area
+            </TableHead>
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
+              STB Number
+            </TableHead>
+            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
+              Registration Date
             </TableHead>
             <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
               Status
-            </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
-              Plan
-            </TableHead>
-            <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4 border-r border-gray-200">
-              Joined Date
             </TableHead>
             <TableHead className="text-muted-foreground font-medium text-sm py-3 px-4">
               Actions
@@ -73,7 +72,7 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
         <TableBody>
           {customers.length === 0 ? (
             <TableRow className="border-b-0">
-              <TableCell colSpan={8} className="h-16 text-center py-3 px-4">
+              <TableCell colSpan={9} className="h-16 text-center py-3 px-4">
                 No customers found.
               </TableCell>
             </TableRow>
@@ -95,9 +94,6 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
-                  {customer.registrationNumber}
-                </TableCell>
                 <TableCell className="py-3 px-4 border-r border-gray-100">
                   <a
                     href={`mailto:${customer.email}`}
@@ -107,22 +103,26 @@ export const CustomersTable = ({ customers }: CustomersTableProps) => {
                   </a>
                 </TableCell>
                 <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
-                  {customer.phone}
+                  {customer.phone || "N/A"}
+                </TableCell>
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
+                  {customer.customer_profile?.area?.name || "N/A"}
+                </TableCell>
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
+                  {customer.customer_profile?.stbNumber || "N/A"}
+                </TableCell>
+                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
+                  {formatDate(customer.createdAt)}
                 </TableCell>
                 <TableCell className="py-3 px-4 border-r border-gray-100">
                   <Badge
+                    variant="outline"
                     className={`text-xs font-medium ${getStatusBadgeClassName(
                       customer.status
                     )}`}
                   >
                     {getStatusLabel(customer.status)}
                   </Badge>
-                </TableCell>
-                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
-                  {customer.plan}
-                </TableCell>
-                <TableCell className="text-sm text-foreground py-3 px-4 border-r border-gray-100">
-                  {customer.joinedDate}
                 </TableCell>
                 <TableCell className="py-3 px-4">
                   <DropdownMenu>

@@ -12,10 +12,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { loginSchema, type LoginFormData } from "../schemas/auth.schemas";
-import { useLogin } from "../hooks/useLogin";
+import { useAuth } from "../hooks/useAuth";
 
-export const LoginForm = () => {
-  const { mutate: login, isPending } = useLogin();
+export const Login = () => {
+  const { login, isLoading } = useAuth();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -27,7 +27,7 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    login(data);
+    await login.mutateAsync(data);
   };
 
   return (
@@ -97,9 +97,9 @@ export const LoginForm = () => {
               type="submit"
               size="lg"
               className="w-full h-12 text-base font-medium cursor-pointer bg-blue-500 text-white hover:bg-blue-600 focus-visible:ring-blue-500/50"
-              disabled={isPending}
+              disabled={isLoading}
             >
-              {isPending ? (
+              {isLoading ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin mr-2" />
                   Logging in...
@@ -114,3 +114,5 @@ export const LoginForm = () => {
     </Card>
   );
 };
+
+export default Login;

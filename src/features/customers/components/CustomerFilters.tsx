@@ -7,19 +7,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { CustomerFilters, SearchBy } from "../types/customer.types";
+import type {
+  CustomerFilters as CustomerFiltersType,
+  SearchBy,
+} from "../types/customer.types";
 
 interface CustomerFiltersProps {
-  filters: CustomerFilters;
-  onFiltersChange: (filters: CustomerFilters) => void;
+  filters: CustomerFiltersType;
+  onFiltersChange: (filters: CustomerFiltersType) => void;
   availablePlans: string[];
 }
 
-const searchByOptions: { value: SearchBy; label: string; placeholder: string }[] = [
+const searchByOptions: {
+  value: SearchBy;
+  label: string;
+  placeholder: string;
+}[] = [
   { value: "name", label: "Name", placeholder: "Search by name..." },
   { value: "email", label: "Email", placeholder: "Search by email..." },
-  { value: "id", label: "Customer ID", placeholder: "Search by ID..." },
-  { value: "phone", label: "Phone", placeholder: "Search by phone..." },
 ];
 
 export const CustomerFilters = ({
@@ -42,7 +47,7 @@ export const CustomerFilters = ({
   const handleStatusChange = (value: string) => {
     onFiltersChange({
       ...filters,
-      status: value as CustomerFilters["status"],
+      status: value as CustomerFiltersType["status"],
     });
   };
 
@@ -99,7 +104,6 @@ export const CustomerFilters = ({
               <SelectItem value="all">All Status</SelectItem>
               <SelectItem value="active">Active</SelectItem>
               <SelectItem value="inactive">Inactive</SelectItem>
-              <SelectItem value="pending">Pending</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -124,4 +128,3 @@ export const CustomerFilters = ({
     </div>
   );
 };
-

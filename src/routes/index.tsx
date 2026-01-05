@@ -1,18 +1,21 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
-import { LoginForm } from "@/features/auth";
-import { Customers } from "@/features/customers/customers";
+import Login from "@/features/auth";
+import { Customers } from "@/features/customers";
 import { AuthGuard } from "./guards/AuthGuard";
+import { GuestGuard } from "./guards/GuestGuard";
 import { paths } from "./paths";
 
 const router = createBrowserRouter([
   {
     path: paths.LOGIN,
     element: (
-      <AuthLayout>
-        <LoginForm />
-      </AuthLayout>
+      <GuestGuard>
+        <AuthLayout>
+          <Login />
+        </AuthLayout>
+      </GuestGuard>
     ),
   },
   {
@@ -102,7 +105,7 @@ const router = createBrowserRouter([
   },
   {
     path: paths.HOME,
-    element: <div>Home Page</div>,
+    element: <Navigate to={paths.DASHBOARD} replace />,
   },
 ]);
 

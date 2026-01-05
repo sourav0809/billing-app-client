@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { NAVIGATION_ITEMS } from "@/config/navigation";
 import { paths } from "@/routes/paths";
-import { useAuth } from "@/features/auth";
+import { useAuth } from "@/features/auth/hooks";
 
 const getIconComponent = (iconName: string) => {
   const iconMap = {
