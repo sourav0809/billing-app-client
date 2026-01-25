@@ -4,11 +4,14 @@ import { Navigate } from "react-router-dom";
 import { LoadingSpinner } from "@/components/common/LoadingSpinner";
 import { paths } from "../paths";
 
-interface AuthGuardProps {
+interface GuestGuardProps {
   children: ReactNode;
 }
 
-export const AuthGuard = ({ children }: AuthGuardProps) => {
+/**
+ * GuestGuard redirects authenticated users away from guest-only pages (like login)
+ */
+export const GuestGuard = ({ children }: GuestGuardProps) => {
   const { isAuthenticated, isLoading } = useAuth();
 
   // Show loading spinner while checking authentication
@@ -20,10 +23,11 @@ export const AuthGuard = ({ children }: AuthGuardProps) => {
     );
   }
 
-  // Redirect to login if not authenticated
-  if (!isAuthenticated) {
-    return <Navigate to={paths.LOGIN} replace />;
+  // Redirect to dashboard if already authenticated
+  if (isAuthenticated) {
+    return <Navigate to={paths.DASHBOARD} replace />;
   }
 
   return <>{children}</>;
 };
+

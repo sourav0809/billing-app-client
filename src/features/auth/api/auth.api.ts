@@ -1,21 +1,13 @@
-import { apiClient } from '@/lib/api/client';
-import type { LoginDto, RegisterDto, AuthResponse } from '../types/auth.types';
+import { apiClient } from "@/lib/api/client";
+import { endpoints } from "@/lib/api/endpoints";
+import type { LoginDto, AuthResponse, User } from "../types/auth.types";
 
 export const authApi = {
   login: async (data: LoginDto): Promise<AuthResponse> => {
-    return apiClient.post('/auth/login', data);
+    return apiClient.post<AuthResponse>(endpoints.AUTH.LOGIN, data);
   },
 
-  register: async (data: RegisterDto): Promise<AuthResponse> => {
-    return apiClient.post('/auth/register', data);
-  },
-
-  logout: async (): Promise<void> => {
-    return apiClient.post('/auth/logout');
-  },
-
-  getMe: async () => {
-    return apiClient.get('/auth/me');
+  getMe: async (): Promise<User> => {
+    return apiClient.get<User>(endpoints.AUTH.ME);
   },
 };
-
